@@ -1,0 +1,17 @@
+package com.henau.mall.product.dao;
+
+import com.henau.mall.product.entity.AttrAttrgroupRelationEntity;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * 属性&属性分组关联
+ * 
+ * @author lijm
+ * @email 13243030406@163.com
+ * @date 2021-01-12 17:10:00
+ */
+@Mapper
+public interface AttrAttrgroupRelationDao extends BaseMapper<AttrAttrgroupRelationEntity> {
+	
+}
