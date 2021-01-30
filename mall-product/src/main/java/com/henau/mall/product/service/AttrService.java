@@ -3,9 +3,11 @@ package com.henau.mall.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.henau.common.utils.PageUtils;
 import com.henau.mall.product.entity.AttrEntity;
+import com.henau.mall.product.vo.AttrGroupRelationVo;
 import com.henau.mall.product.vo.AttrRespVo;
 import com.henau.mall.product.vo.AttrVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,5 +28,11 @@ public interface AttrService extends IService<AttrEntity> {
     AttrRespVo getAttrInfo(Long attrId);
 
     void updateAttr(AttrVo attrVo);
+
+    List<AttrEntity> getRelationAttr(Long attrgroupId);
+
+    void deleteRelation(AttrGroupRelationVo[] vos);
+
+    PageUtils getNoRelationAttr(Map<String, Object> params, Long attrgroupId);
 }
 

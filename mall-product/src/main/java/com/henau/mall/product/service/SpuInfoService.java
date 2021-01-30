@@ -2,7 +2,9 @@ package com.henau.mall.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.henau.common.utils.PageUtils;
+import com.henau.mall.product.entity.SpuInfoDescEntity;
 import com.henau.mall.product.entity.SpuInfoEntity;
+import com.henau.mall.product.vo.SpuSaveVo;
 
 import java.util.Map;
 
@@ -16,5 +18,11 @@ import java.util.Map;
 public interface SpuInfoService extends IService<SpuInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void savaSpuInfo(SpuSaveVo vo);
+
+    void saveBaseSpuInfo(SpuInfoEntity infoEntity);
+
+    PageUtils queryPageByCondition(Map<String, Object> params);
 }
 
