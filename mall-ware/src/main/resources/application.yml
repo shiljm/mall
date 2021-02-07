@@ -2,31 +2,25 @@ spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://8.131.97.173:3306/mall_pms
+    url: jdbc:mysql://8.131.97.173:3306/mall_wms
     driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-    alicloud:
-      access-key: LTAI4G9krxhVfbbGnEYjpe7s
-      secret-key: FbyAckUWb1X2wlRMMsMwtz4qV85kpo
-      oss:
-        endpoint: oss-cn-beijing.aliyuncs.com
   application:
-    name: mall-product
+    name: mall-ware
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
     db-config:
       id-type: auto
-      logic-delete-value: 1
-      logic-not-delete-value: 0
 
 server:
-  port: 10000
+  port: 11000
 logging:
   level:
-    com.henau.mall: debug
+    com.henau: debug
