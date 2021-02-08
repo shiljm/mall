@@ -1,4 +1,4 @@
-package com.henau.mall.ware;
+package com.henau.mall.ware.vo;
 
 import lombok.Data;
 

@@ -2,9 +2,11 @@ package com.henau.mall.ware.controller;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
-import com.henau.mall.ware.MergeVo;
+import com.henau.mall.ware.vo.MergeVo;
+import com.henau.mall.ware.vo.PurchaseDoneVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +29,27 @@ import com.henau.common.utils.R;
 public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
+
+    @PostMapping("/done")
+    public R finish(@RequestBody PurchaseDoneVo doneVo){
+
+        purchaseService.done(doneVo);
+
+        return R.ok();
+    }
+
+    /**
+     * 领取采购单
+     * @param ids
+     * @return
+     */
+    @PostMapping("/received")
+    public R received(@RequestBody List<Long> ids){
+
+        purchaseService.received(ids);
+
+        return R.ok();
+    }
 
     @PostMapping("/merge")
     public R merge(@RequestBody MergeVo mergeVo){

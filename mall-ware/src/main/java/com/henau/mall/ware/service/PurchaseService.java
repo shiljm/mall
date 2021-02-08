@@ -2,9 +2,11 @@ package com.henau.mall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.henau.common.utils.PageUtils;
-import com.henau.mall.ware.MergeVo;
+import com.henau.mall.ware.vo.MergeVo;
 import com.henau.mall.ware.entity.PurchaseEntity;
+import com.henau.mall.ware.vo.PurchaseDoneVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,5 +23,9 @@ public interface PurchaseService extends IService<PurchaseEntity> {
     PageUtils queryPageUnreceive(Map<String, Object> params);
 
     void mergePurchase(MergeVo mergeVo);
+
+    void received(List<Long> ids);
+
+    void done(PurchaseDoneVo doneVo);
 }
 
