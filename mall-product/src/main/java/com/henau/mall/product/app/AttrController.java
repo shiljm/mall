@@ -1,18 +1,16 @@
-package com.henau.mall.product.controller;
+package com.henau.mall.product.app;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import com.henau.mall.product.entity.ProductAttrValueEntity;
+import com.henau.mall.product.service.ProductAttrValueService;
 import com.henau.mall.product.vo.AttrRespVo;
 import com.henau.mall.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.henau.mall.product.entity.AttrEntity;
 import com.henau.mall.product.service.AttrService;
 import com.henau.common.utils.PageUtils;
 import com.henau.common.utils.R;
@@ -32,10 +30,21 @@ public class AttrController {
     @Autowired
     private AttrService attrService;
 
+    @Autowired
+    ProductAttrValueService productAttrValueService;
+
+    @GetMapping("/base/listforspu/{spuId}")
+    public R baseAttrlistforspu(@PathVariable("spuId") Long spuId) {
+
+        List<ProductAttrValueEntity> entities = productAttrValueService.baseAttrlistforspu(spuId);
+
+        return R.ok().put("data", entities);
+    }
+
     /**
      * 列表
      */
-    @RequestMapping("/{attrType}/list/{catelogId}")
+    @GetMapping("/{attrType}/list/{catelogId}")
     public R baseAttrList(@RequestParam Map<String, Object> params,
                           @PathVariable("attrType") String type,
                           @PathVariable("catelogId") Long catelogId){
@@ -85,6 +94,15 @@ public class AttrController {
     //@RequiresPermissions("product:attr:update")
     public R update(@RequestBody AttrVo attrVo){
 		attrService.updateAttr(attrVo);
+
+        return R.ok();
+    }
+
+    @PostMapping("/update/{spuId}")
+    //@RequiresPermissions("product:attr:update")
+    public R updateSpuAttr(@PathVariable("spuId") Long spuId,
+                           @RequestBody List<ProductAttrValueEntity> entities){
+        productAttrValueService.updateSpuAttr(spuId, entities);
 
         return R.ok();
     }

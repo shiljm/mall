@@ -1,10 +1,9 @@
-package com.henau.mall.product.controller;
+package com.henau.mall.product.app;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import com.henau.mall.product.dao.AttrAttrgroupRelationDao;
 import com.henau.mall.product.entity.AttrEntity;
 import com.henau.mall.product.service.AttrAttrgroupRelationService;
 import com.henau.mall.product.service.AttrService;

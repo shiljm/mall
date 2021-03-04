@@ -1,4 +1,4 @@
-package com.henau.mall.product.controller;
+package com.henau.mall.product.app;
 
 import java.util.Arrays;
 import java.util.Map;
