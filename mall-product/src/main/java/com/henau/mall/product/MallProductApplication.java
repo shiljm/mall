@@ -3,6 +3,7 @@ package com.henau.mall.product;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
@@ -65,7 +66,41 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  *      2)、简单配置Redis的host等信息
  *      3)、使用springboot自动配置好的stringRedistemplate来操作Redis
  *          Redis-》map：存放数据，key，数值：value
+ *  7、整合Redisson作为分布式锁等功能框架
+ *      1）、引入依赖
+ *         <dependency>
+ *             <groupId>org.redisson</groupId>
+ *             <artifactId>redisson</artifactId>
+ *             <version>3.12.0</version>
+ *         </dependency>
+ *      2）、配置Redisson
+ *          MyRedissonConfig给容器中配置一个RedissonClient实例即可
+ *      3）、使用
+ *          参照文档做。
+ *  8、整合SpringCache简化缓存开发
+ *      1）、引入依赖
+ *          spring-boot-starter-cache
+ *      2）、写配置
+ *          自动配置了哪些
+ *              cacheAutoConfiguration会导入RedisAutoConfiguration
+ *              自动配好了缓存管理器
+ *          配置使用Redis作为缓存
+ *      3）、测试使用缓存
+ *          @Cacheable:触发将数据保存到缓存的操作
+ *          @CacheEvict:触发将数据从缓存删除的操作
+ *          @CachePut:不影响方法执行更新缓存
+ *          @Caching:组合以上做个操作
+ *          @CacheConfig:在类级别共享缓存的相同配置
+ *          开启缓存功能
+ *          只需要使用注解就能够开启缓存功能
+ *      4）、原理
+ *          CacheAutoConfiguration -> RedisCacheConfiguration ->
+ *          自动配置了RedisCacheManager->初始化所有的缓存->每个缓存决定使用什么配置
+ *          ->如果RedisCacheConfiguration有就用已有的，没有就用默认配置
+ *          ->想改缓存的配置，只需要给容器中放一个RedisCacheConfiguration即可
+ *          ->就会应用到当前RedisCacheManager管理的所有缓存分区中
  */
+
 @EnableFeignClients(basePackages = "com.henau.mall.product.feign")
 @MapperScan("com.henau.mall.product.dao")
 @EnableDiscoveryClient
