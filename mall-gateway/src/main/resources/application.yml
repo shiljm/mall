@@ -49,10 +49,15 @@ spring:
         - id: henaumall_host_route
           uri: lb://mall-product
           predicates:
-            - Host=henaumall.com
+            - Host=henaumall.com,item.henaumall.com
 
         - id: henaumall_search_route
           uri: lb://mall-search
           predicates:
             - Host=search.henaumall.com
+
+        - id: henaumall_auth_route
+          uri: lb://mall-auth-server
+          predicates:
+            - Host=auth.henaumall.com
 ## 前端项目，/api

@@ -1,8 +1,14 @@
 package com.henau.mall.product;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.henau.mall.product.dao.AttrGroupDao;
+import com.henau.mall.product.dao.SkuSaleAttrValueDao;
 import com.henau.mall.product.entity.BrandEntity;
 import com.henau.mall.product.service.BrandService;
+import com.henau.mall.product.service.SkuSaleAttrValueService;
+import com.henau.mall.product.vo.SkuItemSaleAttrVo;
+import com.henau.mall.product.vo.SkuItemVo;
+import com.henau.mall.product.vo.SpuItemAttrGroupVo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.redisson.api.RedissonClient;
@@ -31,6 +37,24 @@ public class MallProductApplicationTests {
 
     @Autowired
     RedissonClient redissonClient;
+
+    @Autowired
+    AttrGroupDao attrGroupDao;
+
+    @Autowired
+    SkuSaleAttrValueDao skuSaleAttrValueDao;
+
+    @Test
+    public void test1() {
+        List<SkuItemSaleAttrVo> saleAttrsBySpuId = skuSaleAttrValueDao.getSaleAttrsBySpuId(13L);
+        System.out.println(saleAttrsBySpuId);
+    }
+
+    @Test
+    public void test() {
+        List<SpuItemAttrGroupVo> attrGroupWithAttrsBySpuId = attrGroupDao.getAttrGroupWithAttrsBySpuId(100L, 225L);
+        System.out.println(attrGroupWithAttrsBySpuId);
+    }
 
     @Test
     public void redisson() {

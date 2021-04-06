@@ -19,6 +19,7 @@ import lombok.Data;
 public class MemberEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+
 	/**
 	 * id
 	 */
@@ -93,4 +94,9 @@ public class MemberEntity implements Serializable {
 	 */
 	private Date createTime;
 
+	private String socialUid;
+
+	private String accessToken;
+
+	private Long expiresIn;
 }

@@ -65,7 +65,7 @@ public class MallSearchApplicationTests {
         searchRequest.source(sourceBuilder);
 
         //2.执行检索；
-        SearchResponse searchResponse = client.search(searchRequest, MallElasticSearchConfig.COMMON_IPTIONS);
+        SearchResponse searchResponse = client.search(searchRequest, MallElasticSearchConfig.COMMON_OPTIONS);
 
         //3.分析结果 searchResponse
         System.out.println(searchResponse.toString());
@@ -102,7 +102,7 @@ public class MallSearchApplicationTests {
         indexRequest.source(jsonString, XContentType.JSON);
 
         //执行操作
-        IndexResponse index = client.index(indexRequest, MallElasticSearchConfig.COMMON_IPTIONS);
+        IndexResponse index = client.index(indexRequest, MallElasticSearchConfig.COMMON_OPTIONS);
 
         //提取有用的响应数据
         System.out.println(index);

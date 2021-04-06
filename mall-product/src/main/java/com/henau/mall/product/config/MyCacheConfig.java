@@ -1,6 +1,5 @@
 package com.henau.mall.product.config;
 
-import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

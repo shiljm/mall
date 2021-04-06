@@ -14,18 +14,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MallElasticSearchConfig {
 
-    public static final RequestOptions COMMON_IPTIONS;
+    public static final RequestOptions COMMON_OPTIONS;
     static {
         RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
 
-        COMMON_IPTIONS = builder.build();
+        COMMON_OPTIONS = builder.build();
     }
 
     @Bean
     public RestHighLevelClient esRestClient() {
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(
-                        new HttpHost("8.131.97.173", 9200, "http")
+                        new HttpHost("8.131.97.173", 9200, "http"),
+                        new HttpHost("8.131.97.173", 9201, "http")
                 )
         );
         return client;
