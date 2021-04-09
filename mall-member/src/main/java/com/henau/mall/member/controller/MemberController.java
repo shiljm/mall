@@ -64,7 +64,7 @@ public class MemberController {
         MemberEntity entity = memberService.login(vo);
         if (entity!=null){
             //TODO 1、登录成功处理
-            return R.ok();
+            return R.ok().setData(entity);
         }else {
             return R.error(BizCodeEnume.LOGINACCT_PASSWORD_INVAILD_EXVEPTION.getCode(), BizCodeEnume.LOGINACCT_PASSWORD_INVAILD_EXVEPTION.getMsg());
         }

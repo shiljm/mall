@@ -1,11 +1,12 @@
-package com.henau.mall.auth.vo;
+package com.henau.common.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class MemberRespVo {
+public class MemberRespVo implements Serializable {
     /**
      * id
      */

@@ -60,4 +60,9 @@ spring:
           uri: lb://mall-auth-server
           predicates:
             - Host=auth.henaumall.com
+
+        - id: henaumall_cart_route
+          uri: lb://mall-cart
+          predicates:
+            - Host=cart.henaumall.com
 ## 前端项目，/api

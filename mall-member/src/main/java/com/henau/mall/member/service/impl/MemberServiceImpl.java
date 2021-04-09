@@ -64,6 +64,8 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         entity.setMobile(vo.getPhone());
         entity.setUsername(vo.getUserName());
 
+        entity.setNickname(vo.getUserName());
+
         //设置密码，密码要进行加密存储
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encode = passwordEncoder.encode(vo.getPassword());
@@ -124,7 +126,6 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         HashMap<String, String> query = new HashMap<>();
         String access_token = socialUser.getAccess_token();
 
-        headers.put("content-type", "application/json");
         query.put("access_token", access_token);
         //登录和注册合并逻辑
         HttpResponse response = HttpUtils.doGet("https://gitee.com", "/api/v5/user", "get", headers, query);
@@ -143,6 +144,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
 
                 memberDao.updateById(update);
 
+                memberEntity.setNickname(socialUser2.getName());
                 memberEntity.setAccessToken(socialUser.getAccess_token());
                 memberEntity.setExpiresIn(socialUser.getExpires_in());
                 return memberEntity;

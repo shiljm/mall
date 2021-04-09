@@ -5,7 +5,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.henau.common.utils.HttpUtils;
 import com.henau.common.utils.R;
 import com.henau.mall.auth.feign.MemberFeignService;
-import com.henau.mall.auth.vo.MemberRespVo;
+import com.henau.common.vo.MemberRespVo;
 import com.henau.mall.auth.vo.SocialUser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
@@ -15,9 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Collections;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -37,7 +37,7 @@ public class OAuth2Controller {
      * @throws Exception
      */
     @GetMapping("/oauth2.0/gitee/success")
-    public String weibo(@RequestParam("code") String code) throws Exception {
+    public String weibo(@RequestParam("code") String code, HttpSession session) throws Exception {
         Map<String, String> header = new HashMap<>();
         Map<String, String> query = new HashMap<>();
 
@@ -65,6 +65,13 @@ public class OAuth2Controller {
                 MemberRespVo data = oauthlogin.getData("data", new TypeReference<MemberRespVo>() {
                 });
                 log.info("登录成功：用户：{}",data.toString());
+                //1、第一次使用session；命令浏览器保存卡号。JSESSIONID这个cookie；
+                //以后浏览器访问那个网站就会带上这个网站的cookie
+                //子域之间； henaumall.com auth.henaumall.com order.henaumall.com
+                //发卡的时候（指定域名为父域名），即使是子域系统发的卡，也能让父域直接使用
+                //TODO 1、默认发的令牌。session=asdfsdg。作用域：当前域；（解决子域session共享问题）
+                //TODO 2、使用JSON的序列化方式来序列化对象数据到Redis中
+                session.setAttribute("loginUser", data);
                 //2、登陆成功就跳回首页
                 return "redirect:http://henaumall.com";
             }else {
