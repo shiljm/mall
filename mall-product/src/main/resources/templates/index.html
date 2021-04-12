@@ -95,8 +95,8 @@
   					</b>
         <ul>
           <li>
-            <a th:if="${session.loginUser!=null}">欢迎：[[${session.loginUser.nickname}]]</a>
-            <a href="http://auth.henaumall.com/login.html" th:if="${session.loginUser==null}">欢迎，请登录！</a>
+            <a th:if="${session.loginUser != null}">欢迎：[[${session.loginUser.nickname}]]</a>
+            <a href="http://auth.henaumall.com/login.html" th:if="${session.loginUser == null}">欢迎，请登录！</a>
           </li>
           <li>
             <a th:if="${session.loginUser==null}" href="http://auth.henaumall.com/reg.html" class="li_2">免费注册</a>
@@ -105,8 +105,6 @@
           <li>
             <a href="/static/#">我的订单</a>
           </li>
-
-
         </ul>
       </div>
     </div>
@@ -244,8 +242,8 @@
               <div class="user_info_show">
                 <p class="">Hi, 欢迎来到!</p>
                 <p>
-                  <a href="/static/#" class="">登录</a>
-                  <a href="/static/#" class="">注册</a>
+                  <a th:if="${session.loginUser == null}" href="/static/#" class="">登录</a>
+                  <a th:if="${session.loginUser == null}" href="/static/#" class="">注册</a>
                 </p>
               </div>
             </div>
