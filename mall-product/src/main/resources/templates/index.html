@@ -96,10 +96,10 @@
         <ul>
           <li>
             <a th:if="${session.loginUser != null}">欢迎：[[${session.loginUser.nickname}]]</a>
-            <a href="http://auth.henaumall.com/login.html" th:if="${session.loginUser == null}">欢迎，请登录！</a>
+            <a th:if="${session.loginUser == null}" href="http://auth.henaumall.com/login.html">欢迎，请登录！</a>
           </li>
           <li>
-            <a th:if="${session.loginUser==null}" href="http://auth.henaumall.com/reg.html" class="li_2">免费注册</a>
+            <a th:if="${session.loginUser == null}" href="http://auth.henaumall.com/reg.html" class="li_2">免费注册</a>
           </li>
           <span>|</span>
           <li>
@@ -240,7 +240,9 @@
                 <a href="/static/#"><img class="" src="/static/index/img/touxiang.png"></a>
               </div>
               <div class="user_info_show">
-                <p class="">Hi, 欢迎来到!</p>
+<!--                <p class="">Hi, 欢迎来到!</p>-->
+                <p th:if="${session.loginUser != null}">欢迎[[${session.loginUser.nickname}]]</p>
+                <p href="http://auth.henaumall.com/login.html" th:if="${session.loginUser == null}">Hi, 欢迎来到!</p>
                 <p>
                   <a th:if="${session.loginUser == null}" href="/static/#" class="">登录</a>
                   <a th:if="${session.loginUser == null}" href="/static/#" class="">注册</a>
@@ -604,6 +606,7 @@
 
 </body>
 <script type="text/javascript">
+  console.log(session.id);
   function search() {
       var keyword=$("#searchText").val()
       window.location.href="http://search.henaumall.com/list.html?keyword="+keyword;

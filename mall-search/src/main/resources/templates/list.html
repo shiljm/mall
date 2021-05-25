@@ -404,7 +404,7 @@
     </div>
     <div class="header_form">
         <input id="keyword_input" type="text" placeholder="手机" th:value="${param.keyword}"/>
-        <a href="javascript:searchByKeyword()">搜索</a>
+        <a href="javascript:searchByKeyword();">搜索</a>
     </div>
     <div class="header_ico">
         <div class="header_gw">
@@ -794,7 +794,7 @@
                                 <li th:each="brand:${result.brands}">
                                     <a href="/static/search/#"
                                        th:href="${'javascript:searchProducts(&quot;brandId&quot;,'+brand.brandId+')'}">
-                                        <img alt="" th:src="${brand.brandImg}">
+                                        <img alt="" th:src="${brand.brandImg}" style="width: auto;height: auto;max-width: 100%;max-height: 100%">
                                         <div th:text="${brand.brandName}">
                                             华为(HUAWEI)
                                         </div>
@@ -1984,8 +1984,7 @@
     }
 
     function searchByKeyword() {
-        // searchProducts("keyword",$("#keyword_input").val());
-        location.href = replaceParamVal(location.href,"keyword", $("#keyword_input").val(),false);
+        location.href = replaceAndAddParamVal(location.href,"keyword", $("#keyword_input").val(),false);
     }
 
     $(".page_a").click(function () {

@@ -25,8 +25,8 @@ public class MallElasticSearchConfig {
     public RestHighLevelClient esRestClient() {
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(
-                        new HttpHost("8.131.97.173", 9200, "http"),
-                        new HttpHost("8.131.97.173", 9201, "http")
+                        new HttpHost("192.168.56.10", 9200, "http"),
+                        new HttpHost("192.168.56.10", 9201, "http")
                 )
         );
         return client;

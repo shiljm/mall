@@ -15,7 +15,7 @@
 			<!--品牌官方网站-->
 					<div class="min">
 						<ul class="header_ul_left">
-							<li class="glyphicon glyphicon-home"> <a href="/static/item/shouye.html" class="aa">商城首页</a></li>
+							<li class="glyphicon glyphicon-home"> <a href="http://henaumall.com" class="aa">商城首页</a></li>
 							<li class="glyphicon glyphicon-map-marker"> <a href="/static/item/javascript:;">北京</a>
 								<ol id="beijing">
 									<li style="background: red;"><a href="/static/item/javascript:;" style="color: white;">北京</a></li>
@@ -57,9 +57,9 @@
 							</li>
 						</ul>
 						<ul class="header_ul_right">
-							<li style="border: 0;">
+							<li>
 								<a href="http://auth.henaumall.com/login.html" th:if="${session.loginUser==null}" class="aa">你好，请登录</a>
-								<a th:if="${session.loginUser!=null}" class="aa" style="width: 100px">[[${session.loginUser.nickname}]]</a>
+								<a th:if="${session.loginUser!=null}" style="width: 100px">Hi！[[${session.loginUser.nickname}]]</a>
 							</li>
 							<li th:if="${session.loginUser==null}"><a href="http://auth.henaumall.com/reg.html" style="color: red;">免费注册</a> |</li>
 							<li><a href="/static/item/javascript:;" class="aa">我的订单</a> |</li>
@@ -504,7 +504,7 @@
 								<li>京东价</li>
 								<li>
 									<span>￥</span>
-									<span th:text="${#numbers.formatDecimal(item.info.price,3,2)}">4499.00</span>
+									<span th:text="${#numbers.formatDecimal(item.info.price,1,2)}">4499.00</span>
 								</li>
 								<li>
 									预约享资格
